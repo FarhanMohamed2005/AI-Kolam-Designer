@@ -1,0 +1,286 @@
+project_name: AI Rangoli Designer
+project_type: Full Stack Web Application
+description: AI-powered rangoli/kolam design and analysis tool
+version: 1.0.0
+created: January 7, 2026
+
+directory_structure:
+  AI Rangoli Designer/
+    ├── frontend/
+    │   ├── index.html               # Main UI
+    │   ├── css/
+    │   │   └── styles.css           # All styling
+    │   └── js/
+    │       ├── canvas.js            # Drawing engine
+    │       ├── analyzer.js          # Pattern analysis
+    │       ├── api.js               # API communication
+    │       └── ui.js                # UI management
+    ├── backend/
+    │   ├── server.js                # Express server
+    │   ├── package.json             # Dependencies
+    │   ├── .env.example             # Config template
+    │   ├── routes/
+    │   │   ├── designs.js           # Design CRUD
+    │   │   ├── patterns.js          # Pattern processing
+    │   │   └── analysis.js          # Analysis endpoints
+    │   ├── models/
+    │   │   └── RangoliDesign.js     # Data model
+    │   └── utils/
+    │       └── PatternRecognition.js # AI engine
+    ├── docs/
+    │   ├── README.md                # Project overview
+    │   ├── API_DOCUMENTATION.md     # API reference
+    │   ├── DESIGN_PRINCIPLES.md     # Learning guide
+    │   └── USER_GUIDE.md            # User manual
+    ├── QUICKSTART.md                # Quick start guide
+    ├── PROJECT_STRUCTURE.txt        # This file
+    ├── setup.sh                     # Unix setup script
+    └── setup.bat                    # Windows setup script
+
+technology_stack:
+  frontend:
+    - HTML5 Canvas API
+    - CSS3 (Responsive)
+    - Vanilla JavaScript (No frameworks)
+    - localStorage for caching
+  
+  backend:
+    - Node.js v14+
+    - Express.js 4.18+
+    - CORS support
+    - Pattern Recognition Engine (custom)
+  
+  optional:
+    - MongoDB (future)
+    - OpenCV.js (future image processing)
+    - TensorFlow.js (future ML)
+
+features:
+  design_tools:
+    - Free drawing (dots, lines, circles)
+    - Symmetry mode (4-fold automatic)
+    - Auto-connect dots
+    - Undo/Redo functionality
+    - Color picker and brush size
+    - Grid overlay
+
+  analysis:
+    - Dot detection from images
+    - Symmetry analysis (rotational, reflection)
+    - Pattern type detection
+    - Design principle extraction
+    - Complexity calculation
+    - Principle scoring
+
+  learning:
+    - Design principles guide
+    - Traditional rangoli information
+    - Regional variations
+    - Cultural significance
+    - Mathematical concepts
+
+  management:
+    - Save designs locally
+    - Save to server
+    - Design gallery
+    - Export as PNG
+    - Load and edit previous designs
+
+key_algorithms:
+  dot_detection:
+    type: Pixel pattern analysis
+    accuracy: Depends on image quality
+    
+  symmetry_detection:
+    type: Rotational and reflection checking
+    angles: [90°, 60°, 45°, 30°]
+    scoring: 0-1 normalized
+    
+  dot_connection:
+    type: Nearest neighbor algorithm
+    optimization: Distance-based
+    constraints: Min/max distance thresholds
+    
+  complexity_calculation:
+    formula: "(dots/50 * 0.6 + lines/100 * 0.4) * 100"
+    scale: 0-100
+    categories: Simple, Moderate, Complex
+
+design_principles_covered:
+  1. Symmetry
+     - Rotational (4-fold, 6-fold, 8-fold)
+     - Mirror (horizontal, vertical, diagonal)
+     
+  2. Dot Foundation (Pulli)
+     - Grid arrangements
+     - Spacing optimization
+     
+  3. Repetition
+     - Pattern rhythm
+     - Element recurrence
+     
+  4. Proportion & Scale
+     - Golden ratio
+     - Size hierarchy
+     
+  5. Balance
+     - Symmetrical
+     - Asymmetrical
+     
+  6. Color Harmony
+     - Traditional palettes
+     - Psychological effects
+
+api_endpoints:
+  designs:
+    - GET    /api/designs
+    - GET    /api/designs/:id
+    - POST   /api/designs
+    - PUT    /api/designs/:id
+    - DELETE /api/designs/:id
+    
+  patterns:
+    - POST /api/patterns/analyze
+    - POST /api/patterns/detect-dots
+    - POST /api/patterns/connect-dots
+    - POST /api/patterns/generate
+    
+  analysis:
+    - POST /api/analysis/symmetry
+    - POST /api/analysis/pattern-type
+    - POST /api/analysis/principles
+    
+  health:
+    - GET /api/health
+
+file_count:
+  frontend: 6 files
+  backend: 8 files
+  documentation: 5 files
+  configuration: 2 files
+  total: 21 files
+
+installation_methods:
+  automated:
+    windows: setup.bat
+    unix: setup.sh
+    
+  manual:
+    step1: "npm install in backend"
+    step2: "Start backend with npm run dev"
+    step3: "Start frontend with http-server"
+    step4: "Open http://localhost:8080"
+
+browser_compatibility:
+  full_support:
+    - Chrome 80+
+    - Firefox 75+
+    - Safari 12+
+    - Edge 80+
+  
+  limited_support:
+    - Internet Explorer (legacy)
+    - Old mobile browsers
+
+dependencies:
+  backend:
+    express: "^4.18.2"
+    cors: "^2.8.5"
+    dotenv: "^16.0.3"
+    multer: "^1.4.5-lts.1"
+    canvas: "^2.11.2"
+    mongoose: "^7.0.0" (optional)
+  
+  dev:
+    nodemon: "^2.0.20"
+    jest: "^29.5.0"
+
+performance:
+  max_dots: 100 (recommended)
+  max_canvas_size: 1000x1000px
+  response_time: <500ms
+  storage: localStorage (5-10MB)
+
+future_enhancements:
+  - ML-based dot detection (TensorFlow.js)
+  - MongoDB integration
+  - User authentication
+  - Real-time collaboration
+  - Mobile app (React Native)
+  - VR/AR visualization
+  - Pattern library
+  - Video tutorials
+  - Social sharing
+  - Advanced filtering
+
+documentation_files:
+  1. README.md - Project overview and features
+  2. API_DOCUMENTATION.md - Complete API reference
+  3. DESIGN_PRINCIPLES.md - Learning guide with theory
+  4. USER_GUIDE.md - Step-by-step user manual
+  5. QUICKSTART.md - Quick start instructions
+  6. PROJECT_STRUCTURE.txt - This file
+
+development_workflow:
+  1. Set up environment
+  2. Start backend server
+  3. Start frontend server
+  4. Open in browser
+  5. Test features
+  6. Analyze and debug
+  7. Deploy when ready
+
+deployment_considerations:
+  production_setup:
+    - Environment variables for production
+    - HTTPS enabled
+    - CORS configured properly
+    - Database connection (MongoDB)
+    - Error logging
+    - Performance monitoring
+  
+  hosting_options:
+    frontend: Vercel, Netlify, GitHub Pages
+    backend: Heroku, AWS, DigitalOcean, Azure
+
+code_quality:
+  style: Modern JavaScript (ES6+)
+  comments: Comprehensive documentation
+  structure: Modular and organized
+  testing: Jest ready (implement tests)
+  linting: ESLint ready (configure)
+
+educational_value:
+  concepts_taught:
+    - Canvas API
+    - REST API design
+    - Pattern recognition
+    - Symmetry mathematics
+    - UI/UX design
+    - Frontend-backend integration
+  
+  ideal_for:
+    - Computer Science students
+    - Web developers
+    - AI/ML enthusiasts
+    - Art and design learners
+    - Cultural enthusiasts
+
+version_history:
+  v1.0.0:
+    date: January 7, 2026
+    features:
+      - Complete drawing interface
+      - Pattern analysis engine
+      - Design gallery
+      - Documentation
+    status: Initial Release
+
+license: MIT
+author: AI Rangoli Designer Team
+repository: [To be filled]
+contact: [To be filled]
+
+---
+Generated: January 7, 2026
+Last Updated: January 7, 2026

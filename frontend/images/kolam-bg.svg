@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <!-- Dark background -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#2a2a4e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="1000" height="1000" fill="url(#bgGradient)"/>
+  
+  <!-- Central Kolam Design -->
+  <g opacity="0.15" filter="url(#glow)">
+    <!-- Outer circle -->
+    <circle cx="500" cy="500" r="350" fill="none" stroke="#D4AF37" stroke-width="2"/>
+    
+    <!-- Star pattern -->
+    <g stroke="#D4AF37" stroke-width="2" fill="none">
+      <!-- 8-pointed star -->
+      <line x1="500" y1="150" x2="500" y2="850"/>
+      <line x1="150" y1="500" x2="850" y2="500"/>
+      <line x1="230" y1="230" x2="770" y2="770"/>
+      <line x1="770" y1="230" x2="230" y2="770"/>
+    </g>
+    
+    <!-- Decorative circles -->
+    <circle cx="500" cy="500" r="100" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="500" cy="500" r="200" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="500" cy="500" r="300" fill="none" stroke="#FF1493" stroke-width="1.5" opacity="0.3"/>
+  </g>
+  
+  <!-- Corner accents -->
+  <g opacity="0.08" fill="#D4AF37">
+    <!-- Top left flower -->
+    <circle cx="150" cy="150" r="80"/>
+    
+    <!-- Top right flower -->
+    <circle cx="850" cy="150" r="80"/>
+    
+    <!-- Bottom left flower -->
+    <circle cx="150" cy="850" r="80"/>
+    
+    <!-- Bottom right flower -->
+    <circle cx="850" cy="850" r="80"/>
+  </g>
+</svg>

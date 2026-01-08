@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Kolam Designer</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 AI Kolam Designer</h1>
+            <p class="subtitle">Create and Analyze Traditional Kolam Patterns</p>
+        </header>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="#" onclick="switchTab('designer')">Designer</a></li>
+                <li><a href="#" onclick="switchTab('analyzer')">Analyzer</a></li>
+                <li><a href="#" onclick="switchTab('gallery')">Gallery</a></li>
+                <li><a href="#" onclick="switchTab('principles')">Design Principles</a></li>
+            </ul>
+        </nav>
+
+        <!-- Designer Tab -->
+        <section id="designer" class="tab-content active">
+            <div class="designer-container">
+                <div class="canvas-section">
+                    <h2>Canvas</h2>
+                    <div class="canvas-controls">
+                        <button onclick="clearCanvas()">Clear</button>
+                        <button onclick="undoAction()">Undo</button>
+                        <button onclick="redoAction()">Redo</button>
+                        <input type="color" id="dotColor" value="#FF6B9D" title="Dot Color">
+                        <input type="range" id="brushSize" min="2" max="20" value="5" title="Dot Size">
+                    </div>
+                    <canvas id="rangoliCanvas" width="600" height="600"></canvas>
+                </div>
+
+                <div class="tools-section">
+                    <h2>Tools</h2>
+                    <div class="tool-group">
+                        <label>
+                            <input type="radio" name="tool" value="dot" checked onchange="selectTool('dot')">
+                            Add Dot
+                        </label>
+                        <label>
+                            <input type="radio" name="tool" value="line" onchange="selectTool('line')">
+                            Draw Line
+                        </label>
+                        <label>
+                            <input type="radio" name="tool" value="circle" onchange="selectTool('circle')">
+                            Draw Circle
+                        </label>
+                        <label>
+                            <input type="radio" name="tool" value="symmetry" onchange="selectTool('symmetry')">
+                            Mirror (Symmetry)
+                        </label>
+                    </div>
+
+                    <div class="tool-group">
+                        <h3>Style</h3>
+                        <select id="styleSelect" onchange="changeStyle()">
+                            <option value="traditional">Traditional</option>
+                            <option value="geometric">Geometric</option>
+                            <option value="floral">Floral</option>
+                            <option value="modern">Modern</option>
+                        </select>
+                    </div>
+
+                    <div class="tool-group">
+                        <button onclick="connectDots()" class="btn-primary">Auto Connect Dots</button>
+                        <button onclick="analyzeDesign()" class="btn-primary">Analyze Design</button>
+                        <button onclick="saveDesign()" class="btn-primary">Save Design</button>
+                        <button onclick="exportAsImage()" class="btn-primary">Export as Image</button>
+                    </div>
+
+                    <div id="quickStats" class="stats-panel">
+                        <h3>Stats</h3>
+                        <p>Dots: <span id="dotCount">0</span></p>
+                        <p>Lines: <span id="lineCount">0</span></p>
+                        <p>Complexity: <span id="complexity">0</span>%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyzer Tab -->
+        <section id="analyzer" class="tab-content">
+            <div class="analyzer-container">
+                <h2>Pattern Analyzer</h2>
+                
+                <div class="upload-section">
+                    <h3>Upload Image</h3>
+                    <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload()">
+                    <div id="previewContainer"></div>
+                </div>
+
+                <div class="analysis-section">
+                    <h3>Analysis Results</h3>
+                    <div id="analysisResults" class="results-panel">
+                        <p>Upload an image or analyze your current design</p>
+                    </div>
+                </div>
+
+                <div class="details-section">
+                    <h3>Design Details</h3>
+                    <div id="detailedAnalysis" class="details-panel">
+                        <p>Details will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Tab -->
+        <section id="gallery" class="tab-content">
+            <div class="gallery-container">
+                <h2>Design Gallery</h2>
+                <button onclick="loadDesigns()" class="btn-primary">Load Saved Designs</button>
+                <div id="designsGallery" class="gallery-grid"></div>
+            </div>
+        </section>
+
+        <!-- Design Principles Tab -->
+        <section id="principles" class="tab-content">
+            <div class="principles-container">
+                <h2>Kolam Design Principles</h2>
+                
+                <div class="principle-card">
+                    <h3>Symmetry</h3>
+                    <p>Kolam patterns often feature rotational or mirror symmetry, creating balanced and harmonious designs. Most traditional kolams use 4-fold, 6-fold, or 8-fold rotational symmetry.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>Repetition</h3>
+                    <p>Repeated patterns and motifs create visual continuity and interest. Elements are often repeated in regular intervals to maintain rhythm.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>Dot-to-Dot Connection</h3>
+                    <p>Traditional kolams are drawn by connecting dots (called "pulli") with curves. This technique creates intricate patterns from simple dot arrangements.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>Color Harmony</h3>
+                    <p>Colors in kolams are carefully chosen to create visual harmony. Traditional colors include bright reds, yellows, greens, and whites on contrasting backgrounds.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>Proportion & Scale</h3>
+                    <p>Elements are sized and spaced proportionally to create visual balance. Larger central motifs often anchor the composition.</p>
+                </div>
+
+                <div class="principle-card">
+                    <h3>Cultural Significance</h3>
+                    <p>Each design element carries cultural meaning. Specific patterns are used for different occasions like Diwali, weddings, and festivals.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Analysis Modal -->
+    <div id="analysisModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Design Analysis</h2>
+            <div id="modalAnalysisContent"></div>
+        </div>
+    </div>
+
+    <script src="js/canvas.js"></script>
+    <script src="js/analyzer.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
