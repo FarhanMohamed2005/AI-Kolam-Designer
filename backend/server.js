@@ -3,6 +3,10 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
+// Load configuration
+const { config, validateApiKey } = require('./config');
+const AIAnalysisService = require('./services/AIAnalysisService');
+
 const app = express();
 
 // Middleware
@@ -18,9 +22,17 @@ app.use('/api/designs', require('./routes/designs'));
 app.use('/api/patterns', require('./routes/patterns'));
 app.use('/api/analysis', require('./routes/analysis'));
 
+// AI Status Endpoint
+app.get('/api/ai-status', (req, res) => {
+  res.json(AIAnalysisService.getStatus());
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'API is running' });
+  res.json({ 
+    status: 'API is running',
+    ai_service: AIAnalysisService.getStatus()
+  });
 });
 
 // Serve index.html for root path

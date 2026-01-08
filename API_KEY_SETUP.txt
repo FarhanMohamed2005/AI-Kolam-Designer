@@ -1,0 +1,102 @@
+# 🔑 **QUICK API SETUP CARD**
+
+## **📍 WHERE TO PASTE YOUR API KEY**
+
+```
+File: c:\Users\moham\Downloads\AI Rangoli Designer\.env
+Line: OPENAI_API_KEY=
+```
+
+---
+
+## **🚀 STEP-BY-STEP**
+
+### **Step 1: Get API Key**
+Go to: https://platform.openai.com/api-keys
+- Sign in / Create account
+- Click "Create new secret key"
+- Copy the key (starts with `sk-`)
+
+### **Step 2: Open `.env` File**
+```
+c:\Users\moham\Downloads\AI Rangoli Designer\.env
+```
+
+### **Step 3: Paste Your Key**
+Replace this:
+```
+OPENAI_API_KEY=
+```
+
+With this:
+```
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxx
+```
+
+### **Step 4: Save File**
+Press `Ctrl+S`
+
+### **Step 5: Restart Backend**
+```bash
+cd "c:\Users\moham\Downloads\AI Rangoli Designer\backend"
+npm start
+```
+
+### **Step 6: Done!**
+You should see: ✅ OpenAI API configured
+
+---
+
+## **✨ WHAT YOU GET**
+
+✅ AI-powered image analysis  
+✅ Smart pattern suggestions  
+✅ Color palette recommendations  
+✅ Automatic dot arrangement  
+✅ Symmetry detection  
+
+---
+
+## **💰 COST**
+
+- **Free tier:** Not available
+- **Pay as you go:** ~$0.01-0.03 per image
+- **Estimate:** ~100-300 images per $1 USD
+
+---
+
+## **🔒 IMPORTANT**
+
+- ⚠️ **NEVER share** your API key
+- ⚠️ **Don't commit** `.env` to GitHub
+- ⚠️ If exposed, regenerate immediately
+- ✅ Already protected in `.gitignore`
+
+---
+
+## **🧪 TEST IT**
+
+1. Backend running? → Check console for "✅ OpenAI API configured"
+2. Upload image → Check browser console for "AI Analysis successful"
+3. Check API status → Visit: http://localhost:5000/api/ai-status
+
+---
+
+## **❓ ISSUES?**
+
+| Issue | Solution |
+|-------|----------|
+| "API key not set" | Paste key in `.env` (no spaces) |
+| "401 error" | Check key spelling, check billing |
+| "Rate limit" | Wait or upgrade plan |
+| Still not working | Restart server with `npm start` |
+
+---
+
+## **📚 FULL GUIDE**
+
+See: `API_INTEGRATION_GUIDE.md` for complete documentation
+
+---
+
+**Ready?** → Get your API key and paste it above! 🚀

@@ -110,6 +110,20 @@ async function generateKolamAPI(dots, style, width, height, colors) {
 }
 
 // Analysis API
+async function analyzeImageWithAI(imageData) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/analysis/image-analysis-ai`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ imageData })
+        });
+        return await response.json();
+    } catch (error) {
+        console.error('Error with AI image analysis:', error);
+        return { success: false };
+    }
+}
+
 async function analyzeSymmetry(dots, imageData) {
     try {
         const response = await fetch(`${API_BASE_URL}/analysis/symmetry`, {
@@ -152,12 +166,30 @@ async function extractPrinciples(dots, connections) {
     }
 }
 
+// AI Service Status
+async function getAIStatus() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/ai-status`);
+        return await response.json();
+    } catch (error) {
+        console.warn('AI status check failed:', error.message);
+        return { enabled: false };
+    }
+}
+
 // Health Check
 async function checkAPIHealth() {
     try {
         const response = await fetch(`${API_BASE_URL.replace('/api', '')}/api/health`);
         const data = await response.json();
         console.log('API Status:', data.status);
+        
+        // Check AI status
+        const aiStatus = await getAIStatus();
+        if (aiStatus.enabled && aiStatus.apiKeySet) {
+            console.log('🤖 AI Analysis available with', aiStatus.service, 'API');
+        }
+        
         return true;
     } catch (error) {
         console.warn('API not available:', error.message);

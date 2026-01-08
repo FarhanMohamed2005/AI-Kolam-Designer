@@ -1,6 +1,42 @@
 const express = require('express');
 const router = express.Router();
 const PatternRecognition = require('../utils/PatternRecognition');
+const AIAnalysisService = require('../services/AIAnalysisService');
+
+// Enhanced image analysis with AI
+router.post('/image-analysis-ai', async (req, res) => {
+  try {
+    const { imageData } = req.body;
+
+    if (!imageData) {
+      return res.status(400).json({ error: 'Image data required' });
+    }
+
+    // Try AI analysis first
+    let aiAnalysis = null;
+    if (AIAnalysisService.isConfigured()) {
+      try {
+        aiAnalysis = await AIAnalysisService.analyzeImage(imageData);
+        console.log('✅ AI Analysis successful');
+      } catch (error) {
+        console.warn('⚠️  AI Analysis failed, falling back to local analysis:', error.message);
+      }
+    }
+
+    // Fall back to local pattern recognition
+    const localAnalysis = new PatternRecognition().dotsFromCanvasData(imageData);
+
+    res.json({
+      success: true,
+      aiAnalysis: aiAnalysis,
+      localAnalysis: localAnalysis,
+      method: aiAnalysis ? 'ai' : 'local'
+    });
+  } catch (error) {
+    console.error('Image analysis error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Analyze symmetry in kolam
 router.post('/symmetry', async (req, res) => {
